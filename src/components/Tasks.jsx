@@ -1,4 +1,4 @@
-import { ChevronRight, DeleteIcon, Trash2Icon, TrashIcon } from "lucide-react";
+import { ChevronRight, TrashIcon } from "lucide-react";
 
 
 {/* pra não ter que fazer isso: "function Tasks(props) {}" e ficar chamando props.nomeDaFuncao, podemos fazer da seguinte maneira: */} 

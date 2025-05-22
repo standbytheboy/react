@@ -39,8 +39,18 @@ function App() {
   }
 
   function deleteTask(taskId) {
-    const newTasks = tasks.filter((task => task.id != taskId)); //ele mantém todos os itens da lista, menos o que eu deletar
+    const newTasks = tasks.filter((task) => task.id != taskId); //ele mantém todos os itens da lista, menos o que eu deletar
     setTasks(newTasks);
+  }
+
+  function onAddTaskSubmit(title, description) {
+    const newTask = {
+      id: tasks.length + 1,
+      title: title,
+      description: description,
+      isCompleted: false,
+    };
+    setTasks([...tasks, newTask]); // serve para atualizar a tela (state); o "...tasks" pega tudo que já tinha no array, e o newTask adiciona a nova task
   }
 
   return (
@@ -49,8 +59,13 @@ function App() {
         <h1 className="text-3xl text-slate-100 font-bold text-center">
           Gerenciador de Tarefas
         </h1>
-      <AddTask></AddTask>
-        <Tasks tasks={tasks} onTaskClick={onTaskClick} deleteTask={deleteTask}></Tasks> {/* coloco todas as funções que preciso usar no arquivo "Tasks" */}
+        <AddTask onAddTaskSubmit={onAddTaskSubmit}></AddTask>
+        <Tasks
+          tasks={tasks}
+          onTaskClick={onTaskClick}
+          deleteTask={deleteTask}
+        ></Tasks>{" "}
+        {/* coloco todas as funções que preciso usar no arquivo "Tasks" */}
       </div>
     </div>
   );
