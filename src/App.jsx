@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Tasks from "./components/Tasks";
 import "./App.css";
+import AddTask from "./components/AddTask";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -48,6 +49,7 @@ function App() {
         <h1 className="text-3xl text-slate-100 font-bold text-center">
           Gerenciador de Tarefas
         </h1>
+      <AddTask></AddTask>
         <Tasks tasks={tasks} onTaskClick={onTaskClick} deleteTask={deleteTask}></Tasks> {/* coloco todas as funções que preciso usar no arquivo "Tasks" */}
       </div>
     </div>
