@@ -1,32 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Tasks from "./components/Tasks";
 import "./App.css";
 import AddTask from "./components/AddTask";
 
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "Estudar Programação",
-      description:
-        "Estudar programação para se tornar um desenvolvedor full stack",
-      isCompleted: false,
-    },
-    {
-      id: 2,
-      title: "Estudar Programação 2",
-      description:
-        "Estudar programação para se tornar um desenvolvedor full stack",
-      isCompleted: false,
-    },
-    {
-      id: 3,
-      title: "Estudar Programação 3",
-      description:
-        "Estudar programação para se tornar um desenvolvedor full stack",
-      isCompleted: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem("tasks")) || []
+  );
+
+  // useEffect: toda vez que o segundo parâmetro (nesse caso '[tasks]' for alterado, haverá um efeito no primeiro parâmetro)
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]); // hook usado para armazenar tarefas no localStorage
 
   function onTaskClick(taskId) {
     const newTasks = tasks.map((task) => {
